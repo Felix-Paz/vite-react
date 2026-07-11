@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useCallback, useEffect, useState } from 'react'
+import Cursor from './components/Cursor'
+import Craft from './components/Craft'
+import Footer from './components/Footer'
+import Hero from './components/Hero'
+import Kinetic from './components/Kinetic'
+import Manifesto from './components/Manifesto'
+import Navbar from './components/Navbar'
+import Palette from './components/Palette'
+import Preloader from './components/Preloader'
+import Works from './components/Works'
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [ready, setReady] = useState(false)
+  const onPreloaderDone = useCallback(() => setReady(true), [])
+
+  // hold scroll until the preloader hands over
+  useEffect(() => {
+    document.body.style.overflow = ready ? '' : 'hidden'
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [ready])
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {!ready && <Preloader onDone={onPreloaderDone} />}
+      <Cursor />
+      <Navbar ready={ready} />
+      <main>
+        <Hero ready={ready} />
+        <Craft />
+        <Works />
+        <Kinetic />
+        <Manifesto />
+        <Palette />
+      </main>
+      <Footer />
     </>
   )
 }
-
-export default App

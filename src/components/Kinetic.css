@@ -1,0 +1,80 @@
+.kinetic {
+  position: relative;
+  padding: clamp(90px, 16vh, 190px) 0;
+  background: var(--bg-2);
+  overflow: hidden;
+}
+
+.kinetic-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 1vh, 16px);
+  will-change: transform;
+}
+
+.kinetic-row {
+  overflow: hidden;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.kinetic-track {
+  display: inline-flex;
+  will-change: transform;
+}
+
+.kinetic-group {
+  display: inline-flex;
+  align-items: baseline;
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(58px, 9.5vw, 150px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  padding-right: 0.45em;
+}
+
+.kinetic-sep {
+  font-size: 0.34em;
+  margin: 0 0.9em;
+  color: var(--accent);
+  align-self: center;
+}
+
+.kinetic-fill .kinetic-group {
+  color: var(--ink);
+}
+
+.kinetic-stroke .kinetic-group {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgb(var(--ink-rgb) / 0.55);
+}
+
+.kinetic-stroke .kinetic-sep {
+  -webkit-text-stroke: 0;
+  color: var(--accent-2);
+}
+
+.kinetic-serif .kinetic-group {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: transparent;
+  background: linear-gradient(100deg, var(--accent), var(--accent-2) 55%, var(--accent-3));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.kinetic-hint {
+  margin-top: clamp(40px, 7vh, 80px);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
